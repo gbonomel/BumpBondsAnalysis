@@ -1,0 +1,46 @@
+ph2acf:
+  chip_id: [0,1]
+  hybrid: 1
+  rows: 336     #336 for dual, 672 for quad
+  columns: 432  #432 for dual, 864 for quad
+  thermal_cycles: 0
+  is_dual: False
+
+input:
+  input_folder: /home/giorgia/module_calibration/
+  input_file_pos: SCurve_0_5V_6000e.root
+  input_file_neg: SCurve_80V_6000e.root
+  input_file_xray: 
+  - xray_5e6_beforeCycles_1.root
+  - xray_5e6_beforeCycles_2.root
+  input_file_mask: pixelalive_mask.root 
+  
+output:
+  output_folder: /home/giorgia/module_calibration/
+  module_name: 1x2CH10
+
+forward_bias_selection:
+  noise_cut: 1
+  thr_cut: 1
+
+xray_selection:
+  Ntriggers: 1
+  occupancy_cut: 1
+
+param_forward_bias:
+  nbins_noise: 100
+  nbins_thr: 100
+  minVcal_noise: -1
+  maxVcal_noise: 100
+  minVcal_thr: -1
+  maxVcal_thr: 100
+
+param_xray: 
+  minvcal: 0
+  maxvcal: 1000
+
+scans:
+  threshold2d: Threshold2D_Chip
+  noise2d: Noise2D_Chip
+  fiterrors: FitErrors_Chip
+  pixelalive: PixelAlive_Chip
